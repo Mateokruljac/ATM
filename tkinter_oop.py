@@ -95,13 +95,13 @@ class ATM:
                 else:
                     Label(window,text = "Something went wrong!").grid()
             else:
-                Label(window,text = "You don`t have enough money!")
+                Label(window,text = "You don`t have enough money!").grid()
                 
     
     #change password
-    def change_password(validation,currently_password):
+    def change_password(validation,new_password):
             currently_password = validation[0][2]
-            new_password = currently_password
+            new_password = int(new_password.get())
             if len(str(new_password)) <= 0:
                 Label(window,text ="This field cannot be empty!")
                 window.destroy()
@@ -143,10 +143,10 @@ class ATM:
             # new password label and entry field 
             password_label = Label(window,text = "New Password")
             password_label.grid(row = 8)
-            password = StringVar()
-            password_entry = Entry(window,textvariable=password)
+            new_password = StringVar()
+            password_entry = Entry(window,textvariable=new_password)
             password_entry.grid(row = 9)
-            password_change = partial(ATM.change_password,validate_user,password)
+            password_change = partial(ATM.change_password,validate_user,new_password)
             password_button = Button(window, text ="Change password",command = password_change)
             password_button.grid(row = 10)
             
